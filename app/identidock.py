@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 default_name = 'Ichikawa Bloggs'
 
-@app.route('/')
+@app.route('/', endpoint='mainpage')
 def mainpage():
   name = default_name
 
@@ -20,7 +20,7 @@ def mainpage():
 
   return header + body + footer
 
-@app.route('/monster/<name>')
+@app.route('/monster/<name>', endpoint='get_identicon')
 def get_identicon(name):
   r = requests.get('http://dnmonster:8080/monster/' + name + '?size=80')
   image = r.content
